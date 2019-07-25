@@ -125,7 +125,7 @@ class COCOStuffeval:
         labelMapRes = cocoSegmentationToSegmentationMap(cocoRes, imgId, includeCrowd=False)
 
         # Check that the result has only valid labels
-        invalidLabels = [l for l in np.unique(labelMapRes) if l not in self.catIds]
+        invalidLabels = [l for l in np.unique(labelMapRes) if l not in self.catIds and l != 0]
         if len(invalidLabels) > 0:
             raise Exception('Error: Invalid classes predicted in the result file: %s. Please insert only labels in the range [%d, %d]!'
             % (str(invalidLabels), min(self.catIds), max(self.catIds)))
